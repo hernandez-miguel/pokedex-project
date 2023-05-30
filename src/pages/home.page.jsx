@@ -48,65 +48,71 @@ export default function HomePage() {
     <div className='container'>
       <h1>Pokedex</h1>
       <div className='selector-section'>
-        <label htmlFor="pokemonNameSelector">Pick a Pokemon: </label>
-        <select 
-          name='pokemonNameSelector'
-          id='pokemonNameSelector'
-          value={searchName}
-          onChange={(ev) => {
-            setSearchName(ev.target.value)
-          }}
-        >
-          <option value="ALL">ALL</option>
-          {
-            pokemonNameList.map((pokemon, index) => {
-              return (
-                <option value={pokemon}>
-                  {pokemon}
-                </option>
-              )
-          })}
-        </select>
-        <label htmlFor="pokemoTypeSelector">Pick a Type: </label>
-        <select 
-          name='pokemonTypeSelector'
-          id='pokemonTypeSelector'
-          value={searchType}
-          onChange={(ev) => {
-            setSearchType(ev.target.value)
-          }}
-        >
-          <option value="ALL">ALL</option>
-          {
-            pokemonTypeArr.map((type, index) => {
-              {console.log(type)}
-              return (
-                <option value={type}>
-                  {type}
-                </option>
-              )
-          })}
-        </select>
-        <label htmlFor="pokemoTypeSelector">Pick a Weakness: </label>
-        <select 
-          name='pokemonWeaknessSelector'
-          id='pokemonWeaknessSelector'
-          value={searchWeakness}
-          onChange={(ev) => {
-            setSearchWeakness(ev.target.value)
-          }}
-        >
-          <option value="ALL">ALL</option>
-          {
-            pokemonTypeArr.map((type, index) => {
-              {console.log(type)}
-              return (
-                <option value={type}>
-                  {type}
-                </option>
-              )
-          })}
-        </select>
+        <div className="name-selector">
+          <label htmlFor="pokemonNameSelector">Pick a Pokemon: </label>
+          <select 
+            name='pokemonNameSelector'
+            id='pokemonNameSelector'
+            value={searchName}
+            onChange={(ev) => {
+              setSearchName(ev.target.value)
+            }}
+          >
+            <option value="ALL">ALL</option>
+            {
+              pokemonNameList.map((pokemon, index) => {
+                return (
+                  <option value={pokemon}>
+                    {pokemon}
+                  </option>
+                )
+            })}
+          </select>
+        </div>
+        <div className="type-selector">
+          <label htmlFor="pokemoTypeSelector">Pick a Type: </label>
+          <select 
+            name='pokemonTypeSelector'
+            id='pokemonTypeSelector'
+            value={searchType}
+            onChange={(ev) => {
+              setSearchType(ev.target.value)
+            }}
+          >
+            <option value="ALL">ALL</option>
+            {
+              pokemonTypeArr.map((type, index) => {
+                {console.log(type)}
+                return (
+                  <option value={type}>
+                    {type}
+                  </option>
+                )
+            })}
+          </select>
+        </div>
+        <div className="weakness-selector">
+          <label htmlFor="pokemoTypeSelector">Pick a Weakness: </label>
+          <select 
+            name='pokemonWeaknessSelector'
+            id='pokemonWeaknessSelector'
+            value={searchWeakness}
+            onChange={(ev) => {
+              setSearchWeakness(ev.target.value)
+            }}
+          >
+            <option value="ALL">ALL</option>
+            {
+              pokemonTypeArr.map((type, index) => {
+                {console.log(type)}
+                return (
+                  <option value={type}>
+                    {type}
+                  </option>
+                )
+            })}
+          </select>
+        </div>
       </div>
       <ul>
         { searchList.length? 
