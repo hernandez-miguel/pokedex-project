@@ -8,10 +8,13 @@ export default function HomePage() {
     'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug',
     'Rock', 'Ghost', 'Dark', 'Dragon', 'Steel', 'Fairy'
   ]
+  pokemonTypeArr.sort();
+
+  // state variables
   const [list, setList] = useState([]);
-  const [searchName, setSearchName] = useState('');
-  const [searchType, setSearchType] = useState('');
-  const [searchWeakness, setSearchWeakness] = useState('');
+  const [searchName, setSearchName] = useState('ALL');
+  const [searchType, setSearchType] = useState('ALL');
+  const [searchWeakness, setSearchWeakness] = useState('ALL');
 
   async function getPokemonData() {
     try {
@@ -42,7 +45,7 @@ export default function HomePage() {
   } else if (searchName === 'ALL' && searchType !== 'ALL' && searchWeakness !== 'ALL') {
     const newFilterByType = filterPokemonByType(list, searchType);
     searchList = [...filterPokemonByWeakness(newFilterByType, searchWeakness)];
-  }
+  } 
 
   return (
     <div className='container'>
@@ -62,7 +65,7 @@ export default function HomePage() {
             {
               pokemonNameList.map((pokemon, index) => {
                 return (
-                  <option value={pokemon}>
+                  <option value={pokemon} key={pokemon + index}>
                     {pokemon}
                   </option>
                 )
@@ -82,9 +85,8 @@ export default function HomePage() {
             <option value="ALL">ALL</option>
             {
               pokemonTypeArr.map((type, index) => {
-                {console.log(type)}
                 return (
-                  <option value={type}>
+                  <option value={type} key={type + index}>
                     {type}
                   </option>
                 )
@@ -104,9 +106,8 @@ export default function HomePage() {
             <option value="ALL">ALL</option>
             {
               pokemonTypeArr.map((type, index) => {
-                {console.log(type)}
                 return (
-                  <option value={type}>
+                  <option value={type} key={type + index}>
                     {type}
                   </option>
                 )
@@ -118,20 +119,20 @@ export default function HomePage() {
         { searchList.length? 
             searchList.map((item, index) => {
               return (
-                <li>
+                <li key={item.id}>
                   <h2>{item.num} {item.name}</h2>
                   <img src={item.img} alt="" />
                   <div className="pokemonInfo">
                     <div className="pokemonTypeContainer">
                       <h3>Type:</h3>
                       {item.type.map((ele, index) => {
-                        return (<p>{ele}</p>);
+                        return (<p key={ele + index}>{ele}</p>);
                       })}
                     </div>
                     <div className="pokemonWeaknessContainer">
                       <h3>Weaknesses:</h3>
                       {item.weaknesses.map((ele, index) => {
-                        return (<p>{ele}</p>);
+                        return (<p key={ele + index}>{ele}</p>);
                       })}
                     </div>
                   </div>
